@@ -1,6 +1,50 @@
+# Misc.
 *.swp
 *.swo
-build
 *.user
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# IDE and Code Editor Stuff
 /.idea
+/.vscode
+/.vs
+
+# Build Dirs
 /cmake-build-debug
+/build
+/out
+/bin
+
+
