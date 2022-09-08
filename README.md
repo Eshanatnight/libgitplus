@@ -18,7 +18,6 @@ C++ wrapper for libgit2. It contains libgit2 as submodule (libs/libgit2).
 Supporting CMake options:
 
 * `USE_BOOST`
-* `BUNDLE_LIBGIT2`
 * `BUILD_LIBGIT2CPP_EXAMPLES`
 
 ## Testing
