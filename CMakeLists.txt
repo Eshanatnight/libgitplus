@@ -1,5 +1,5 @@
 project (libgit2cpp)
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.24.0)
 
 # Build options
 OPTION(USE_BOOST "Enable use of boost header libraries" OFF)
@@ -10,11 +10,7 @@ IF(USE_BOOST)
   include_directories(${BOOST_INCLUDEDIR})
 ENDIF()
 
-if (MSVC)
-  OPTION(BUNDLE_LIBGIT2 "use bundled libgit2" ON)
-else()
-  OPTION(BUNDLE_LIBGIT2 "use bundled libgit2" ON)
-endif()
+OPTION(BUNDLE_LIBGIT2 "use bundled libgit2" ON)
 
 if (BUNDLE_LIBGIT2)
   add_subdirectory(libs/libgit2)
