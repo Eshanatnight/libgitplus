@@ -13,7 +13,7 @@ ENDIF()
 if (MSVC)
   OPTION(BUNDLE_LIBGIT2 "use bundled libgit2" ON)
 else()
-  OPTION(BUNDLE_LIBGIT2 "use bundled libgit2" OFF)
+  OPTION(BUNDLE_LIBGIT2 "use bundled libgit2" ON)
 endif()
 
 if (BUNDLE_LIBGIT2)
