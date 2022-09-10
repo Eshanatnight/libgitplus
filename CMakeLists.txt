@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.24.0)
 
 # Build options
 OPTION(USE_BOOST "Enable use of boost header libraries" OFF)
+option(BUILD_LIBGIT2CPP_EXAMPLES                        OFF)
 
 IF(USE_BOOST)
   add_definitions(-DUSE_BOOST=1)
@@ -10,11 +11,7 @@ IF(USE_BOOST)
   include_directories(${BOOST_INCLUDEDIR})
 ENDIF()
 
-OPTION(BUNDLE_LIBGIT2 "use bundled libgit2" ON)
-
-if (BUNDLE_LIBGIT2)
-  add_subdirectory(libs/libgit2)
-endif()
+add_subdirectory(libs/libgit2)
 
 file(GLOB_RECURSE lib_sources
   src/*.cpp
@@ -38,11 +35,9 @@ if (USE_BOOST)
   target_include_directories(git2cpp PUBLIC ${Boost_INCLUDE_DIRS})
 endif()
 
-if (BUNDLE_LIBGIT2)
-  target_include_directories(git2cpp
-    PUBLIC libs/libgit2/include
-  )
-endif()
+target_include_directories(git2cpp
+  PUBLIC libs/libgit2/include
+)
 
 target_link_libraries(git2cpp git2)
 
@@ -51,8 +46,6 @@ set_target_properties(git2cpp PROPERTIES
   CXX_STANDARD_REQUIRED YES
   INTERFACE_COMPILE_FEATURES cxx_std_17
 )
-
-option(BUILD_LIBGIT2CPP_EXAMPLES ON)
 
 if(BUILD_LIBGIT2CPP_EXAMPLES)
   set(examples
@@ -73,14 +66,14 @@ if(BUILD_LIBGIT2CPP_EXAMPLES)
     blame
     clone
   )
-  
+
   foreach (example ${examples})
     add_executable("${example}-cpp" examples/${example}.cpp)
     target_link_libraries("${example}-cpp" git2cpp)
   endforeach(example)
-  
+
   add_executable(commit-graph-generator examples/commit-graph-generator.cpp)
   target_link_libraries(commit-graph-generator git2cpp)
-  
+
   file(COPY test.sh DESTINATION . FILE_PERMISSIONS ${EXE_PERM})
 endif()
